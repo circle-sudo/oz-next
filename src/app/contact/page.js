@@ -3,9 +3,16 @@
 import { useEffect, useState } from "react";
 import DemoShell from "@/components/DemoShell";
 
+type Phase = "loading" | "ready";
+
+type Payload = {
+  message: string;
+  loadedAt: string;
+};
+
 export default function ContactPage() {
-  const [phase, setPhase] = useState("loading");
-  const [payload, setPayload] = useState(null);
+  const [phase, setPhase] = useState<Phase>("loading");
+  const [payload, setPayload] = useState<Payload | null>(null);
 
   useEffect(() => {
     console.log("CSR Rendering on Browser...");
@@ -61,8 +68,17 @@ export default function ContactPage() {
         )}
       </section>
       <ul className="list-inside list-disc space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-        <li>브라우저 개발자 도구 콘솔에서 <code className="rounded bg-zinc-100 px-1 font-mono text-xs dark:bg-zinc-800">CSR Rendering on Browser...</code> 로그 위치를 확인하세요.</li>
-        <li>서버 터미널에는 위 로그가 나타나지 않습니다 (useEffect는 브라우저에서만 실행).</li>
+        <li>
+          브라우저 개발자 도구 콘솔에서{" "}
+          <code className="rounded bg-zinc-100 px-1 font-mono text-xs dark:bg-zinc-800">
+            CSR Rendering on Browser...
+          </code>{" "}
+          로그 위치를 확인하세요.
+        </li>
+        <li>
+          서버 터미널에는 위 로그가 나타나지 않습니다 (useEffect는 브라우저에서만
+          실행).
+        </li>
       </ul>
     </DemoShell>
   );

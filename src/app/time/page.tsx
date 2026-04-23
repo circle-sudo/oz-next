@@ -7,8 +7,8 @@ export default async function TimePage() {
   console.log("SSR/SSG Rendering on Server...");
 
   const renderedAt = new Date().toISOString();
-  let logs = [];
-  let fetchError = null;
+  let logs: Awaited<ReturnType<typeof fetchLatestLogs>> = [];
+  let fetchError: string | null = null;
 
   try {
     logs = await fetchLatestLogs(8);
@@ -32,7 +32,10 @@ export default async function TimePage() {
             {fetchError}
           </p>
           <p className="mt-3 text-xs leading-relaxed opacity-90">
-            <code className="rounded bg-amber-100/80 px-1 dark:bg-amber-900/60">src/lib/firebaseAdmin.js</code>에서 사용하는 환경 변수를 확인하세요.
+            <code className="rounded bg-amber-100/80 px-1 dark:bg-amber-900/60">
+              src/lib/firebaseAdmin.ts
+            </code>
+            에서 사용하는 환경 변수를 확인하세요.
           </p>
         </div>
       ) : (
@@ -43,9 +46,13 @@ export default async function TimePage() {
           {logs.length === 0 ? (
             <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
               아직 문서가 없습니다. 콘솔이나 클라이언트에서{" "}
-              <code className="rounded bg-zinc-200 px-1 font-mono text-xs dark:bg-zinc-800">logs</code>{" "}
+              <code className="rounded bg-zinc-200 px-1 font-mono text-xs dark:bg-zinc-800">
+                logs
+              </code>{" "}
               컬렉션에 문서를 추가하면 여기에 표시됩니다. 권장 필드:{" "}
-              <code className="rounded bg-zinc-200 px-1 font-mono text-xs dark:bg-zinc-800">createdAt</code>{" "}
+              <code className="rounded bg-zinc-200 px-1 font-mono text-xs dark:bg-zinc-800">
+                createdAt
+              </code>{" "}
               (Timestamp) — 있으면 최신순 정렬에 사용됩니다.
             </p>
           ) : (
@@ -69,9 +76,18 @@ export default async function TimePage() {
       )}
       <ul className="list-inside list-disc space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
         <li>
-          <code className="rounded bg-zinc-100 px-1 py-0.5 font-mono text-xs dark:bg-zinc-800">export const dynamic = &quot;force-dynamic&quot;</code> 로 매 요청마다 동적 렌더링
+          <code className="rounded bg-zinc-100 px-1 py-0.5 font-mono text-xs dark:bg-zinc-800">
+            export const dynamic = &quot;force-dynamic&quot;
+          </code>{" "}
+          로 매 요청마다 동적 렌더링
         </li>
-        <li>서버 터미널에서 <code className="rounded bg-zinc-100 px-1 font-mono text-xs dark:bg-zinc-800">SSR/SSG Rendering on Server...</code> 로그가 요청마다 찍히는지 확인하세요.</li>
+        <li>
+          서버 터미널에서{" "}
+          <code className="rounded bg-zinc-100 px-1 font-mono text-xs dark:bg-zinc-800">
+            SSR/SSG Rendering on Server...
+          </code>{" "}
+          로그가 요청마다 찍히는지 확인하세요.
+        </li>
       </ul>
     </DemoShell>
   );

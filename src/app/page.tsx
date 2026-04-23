@@ -1,6 +1,15 @@
 import Link from "next/link";
 
-const modes = [
+type Mode = {
+  href: string;
+  name: string;
+  subtitle: string;
+  description: string;
+  chip: string;
+  chipClass: string;
+};
+
+const modes: Mode[] = [
   {
     href: "/about",
     name: "SSG",

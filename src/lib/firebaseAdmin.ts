@@ -1,4 +1,5 @@
 import admin from "firebase-admin";
+import type { ServiceAccount } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
 let appInitialized = false;
@@ -13,7 +14,7 @@ function initializeFirebaseAdmin() {
 
   const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
   if (serviceAccountJson) {
-    const credentials = JSON.parse(serviceAccountJson);
+    const credentials = JSON.parse(serviceAccountJson) as ServiceAccount;
     admin.initializeApp({
       credential: admin.credential.cert(credentials),
     });

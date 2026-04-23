@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
@@ -17,7 +18,7 @@ export const metadata = {
   description: "SSG, SSR(Firestore), CSR 동작을 한 화면에서 비교합니다.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="ko"

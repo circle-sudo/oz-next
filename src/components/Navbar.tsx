@@ -5,7 +5,7 @@ const links = [
   { href: "/about", label: "SSG (/about)" },
   { href: "/time", label: "SSR (/time)" },
   { href: "/contact", label: "CSR (/contact)" },
-];
+] as const;
 
 export default function Navbar() {
   return (
